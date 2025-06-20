@@ -35,30 +35,69 @@ const projects = [
     githubUrl: "https://github.com/AnthonyPochapsky/OurMeals"
   }
 ];
-const ProjectBlock = (props) => {
+
+
+const ZoomedProject = ({ project, onClose }) => {
+  return (
+    <div onClick={onClose} className="fixed inset-0 z-50 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+      <div className="bg-card text-secondary-foreground rounded-2xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-y-auto relative border border-border transition-all duration-300">
+
+        <div className="h-64 w-full overflow-hidden rounded-t-2xl">
+          <img
+            src={project.image}
+            alt={project.title}
+            className="w-full h-full object-cover"
+          />
+        </div>
+
+        <div className="p-6">
+          <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
+          <p className="text-sm text-muted-foreground mb-4">
+            {project.description}
+          </p>
+          
+          <div className="flex flex-wrap gap-2 mb-6">
+            {project.tags.map((tag, i) => (
+              <span
+                key={i}
+                className="px-2 py-1 text-xs font-medium border rounded-full bg-primary/20 text-secondary"
+              >
+                {tag}
+              </span>
+            ))}
+          </div>
+
+          <div className= "flex justify-between items-center">
+                <div className="flex space-x-3">
+                  <a href={project.githubUrl} target="_blank" className="text-foreground/80 hover:text-primary transition-colors duration-300">
+                    <Github/>
+                  </a>
+                </div>
+              </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const ProjectBlock = ({project, onZoom}) => {
   const [isOpen, setIsOpen] = useState(false);
-  const project = props.project;
   return(
-    <div className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover animate-jump">
+    <div onClick={onZoom} className="group bg-card rounded-lg overflow-hidden shadow-xs card-hover animate-jump">
               <div className="h-48 overflow-hidden">
                 <img src={project.image} alt={project.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
               </div>
-              <h2 className="px-2 py-1 text-xs font-medium bg-secondary text-secondary">{project.title}</h2>
+              <h2 className="px-2 py-1 font-bold mb-2">{project.title}</h2>
               <div className="p-6">
                 <div className="flex flex-wrap gap-2 mb-4">
-                      <span className="px-2 py-1 text-xs font-medium border rounded-full bg-primary/20 text-secondary">
+                      <span className="text-sm text-muted-foreground mb-4">
                         {project.description}
                       </span>
                 </div>
               </div>
-              <button className="flex flex-wrap gap-2 mb-4 hover:text-primary transition-colors duration-300" onClick={( () => setIsOpen(!isOpen))}>
-                  Technologies <ArrowDown />
-              </button>
-              <div className={cn("transition duration-500 ease-in-out gap-2 mb-4",
-                isOpen ? "flex flex-wrap" : "hidden"
-                )}>
+              <div className="flex flex-wrap transition duration-500 ease-in-out gap-2 mb-4">
                 {project.tags.map((tag) => (
-                  <span className="px-2 py-1 text-xs font-medium border rounded-full bg-secondary text-secondary-foreground">
+                  <span className="px-2 py-1 text-xs font-medium border rounded-full bg-primary/20 text-secondary">
                     {tag}
                   </span>
                 ))}
@@ -74,6 +113,7 @@ const ProjectBlock = (props) => {
   );
 }
 export const Projects = () => {
+  const [zoomedProject, setZoomedProject] = useState(null);
 useEffect(() => {
   const sections = document.querySelectorAll('.animate-jump');
   const observer = new IntersectionObserver(entries => {
@@ -102,9 +142,12 @@ return (
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {projects.map((project) => (
-            <ProjectBlock key={project.id} project={project}/>
+            <ProjectBlock key={project.id} project={project} onZoom={() => setZoomedProject(project)}/>
           ))}
         </div>
+        {zoomedProject && (
+        <ZoomedProject project={zoomedProject} onClose={() => setZoomedProject(null)} />
+      )}
       </div>
   </section>
 );
