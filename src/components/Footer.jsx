@@ -1,4 +1,4 @@
-import { ArrowUp, Phone, Mail } from 'lucide-react';
+import { ArrowUp, Linkedin, Mail } from 'lucide-react';
 
 export const Footer = () => {
     return (
@@ -8,7 +8,7 @@ export const Footer = () => {
             </div>
 
             <div className="text-sm text-muted-foreground flex items-center gap-2"> 
-            <i><Phone/></i> <p className="m-0">(416)-832-8225</p>
+            <i><Linkedin/></i> <a href="https://www.linkedin.com/in/anthony-pochapsky-80a19b239/" className="m-0 hover:text-primary transition-colors duration-300">Click Here</a>
             </div>
 
 
