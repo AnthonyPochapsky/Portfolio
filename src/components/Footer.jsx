@@ -8,7 +8,7 @@ export const Footer = () => {
             </div>
 
             <div className="text-sm text-muted-foreground flex items-center gap-2"> 
-            <i><Linkedin/></i> <a href="https://www.linkedin.com/in/anthony-pochapsky-80a19b239/" className="m-0 hover:text-primary transition-colors duration-300" target="_blank">Click Here</a>
+            <i><Linkedin/></i> <a href="https://www.linkedin.com/in/anthony-pochapsky-80a19b239/" className="m-0 hover:text-primary transition-colors duration-300" target="_blank">in/anthonypochapsky</a>
             </div>
 
 

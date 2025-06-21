@@ -5,7 +5,8 @@ const projects = [
   {
     id: 1,
     title: "Online Shopping Portal (Simulation)",
-    description: "Provides many common features expected in a shopping portal that is mostly built in SPA",
+    description: "Provides many common features expected in a shopping portal that is mostly built in SPA.",
+    extendedDescription: "Incorporated the MVC design pattern using AngularJS where I relied on client sided html, css, javascript for implementing the view portion, and server sided php for implementing the controller classes that would pull data from the DB using embedded mysql.",
     image: "/projects/OSP.png",
     tags: ["HTML", "CSS", "JavaScript", "AngularJS", "PHP", "MySQL"],
     githubUrl: "https://github.com/AmanShoker/SPA-OSP"
@@ -13,7 +14,8 @@ const projects = [
   {
     id: 2,
     title: "Toronto Vehicle Collision Visualization",
-    description: "Webpage providing info about harmless, injury present, and fatal collisions",
+    description: "Webpage providing info about harmless, injury present, and fatal collisions.",
+    extendedDescription: "Deployed statically on AWS using S3 to outsource the work of handling http requests. Used Python pandas library for the initial data processing task of the downloaded datasets which then got passed into my javascript app for visualizing processed data.",
     image: "/projects/CollisionProject.PNG",
     tags: ["HTML-Google Maps API", "JavaScript", "Python-pandas", "Flask", "EC2", "Nginx", "S3"],
     githubUrl: "https://github.com/AnthonyPochapsky/VehicleCollisionDataVisualization"
@@ -21,7 +23,8 @@ const projects = [
   {
     id: 3,
     title: "AlarmClock App",
-    description: "Allows for tracking time and setting multiple alarms",
+    description: "Allows for tracking time and setting multiple alarms.",
+    extendedDescription: "Built entirely using visual basic to design a well functioning frontend that incorporates many good UX principles such as colour contrast, and no loop navigation among others that mix together menu form and direct manipulation paradigms. Allows the means for tracking the time, setting the time, and setting one or more alarms.",
     image: "/projects/AlarmClockProject.PNG",
     tags: ["Visual Basic", ".NET"],
     githubUrl: "https://github.com/AnthonyPochapsky/AlarmClock"
@@ -29,7 +32,8 @@ const projects = [
   {
     id: 4,
     title: "OurMeals (Smartfridge like app)",
-    description: "Frontend functionality of navigating a tablet like smart fridge app",
+    description: "Frontend functionality of navigating a tablet like smart fridge app.",
+    extendedDescription: "Built entirely using visual basic to design a well functioning frontend that incorporates many good UX principles such as colour contrast, and no loop navigation among others that mix together menu form and direct manipulation paradigms. Allows the means of managing fridge inventory, creating different types of shopping lists (Recipe, Routine, Plain), and shopping with any such list to efficiently sync up fridge inventory with newly purchased items from a fixed domain.",
     image: "/projects/OurMeals.PNG",
     tags: ["Visual Basic", ".NET"],
     githubUrl: "https://github.com/AnthonyPochapsky/OurMeals"
@@ -55,7 +59,9 @@ const ZoomedProject = ({ project, onClose }) => {
           <p className="text-sm text-muted-foreground mb-4">
             {project.description}
           </p>
-          
+          <p className="text-sm text-muted-foreground mb-4">
+            {project.extendedDescription}
+          </p>
           <div className="flex flex-wrap gap-2 mb-6">
             {project.tags.map((tag, i) => (
               <span
